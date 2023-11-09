@@ -1,0 +1,20 @@
+{
+    parserClass="com.github.ryosk.mpplplugin.language.parser.MpplParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Mppl"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.github.ryosk.mpplplugin.language.psi"
+    psiImplPackage="com.github.ryosk.mpplplugin.language.psi.impl"
+
+    elementTypeHolderClass="com.github.ryosk.mpplplugin.language.psi.MpplTypes"
+    elementTypeClass="com.github.ryosk.mpplplugin.language.psi.MpplElementType"
+    tokenTypeClass="com.github.ryosk.mpplplugin.language.psi.MpplTokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
