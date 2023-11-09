@@ -6,13 +6,12 @@
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ryosk.mpplplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <fileType
+                name="Mppl File"
+                implementationClass="com.github.ryosk.mpplplugin.language.MpplFileType"
+                fieldName="INSTANCE"
+                language="Mppl"
+                extensions="mpl"/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.ryosk.mpplplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
