@@ -19,5 +19,6 @@
         <lang.syntaxHighlighterFactory
                 language="Mppl"
                 implementationClass="com.github.ryosk.mpplplugin.language.MpplSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.github.ryosk.mpplplugin.language.MpplColorSettingsPage"/>
     </extensions>
 </idea-plugin>

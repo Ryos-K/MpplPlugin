@@ -6,7 +6,6 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey
-import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
@@ -14,16 +13,16 @@ import com.intellij.psi.tree.IElementType
 class MpplSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
-        private val KEYWORD = createTextAttributesKey("Mppl Keyword", DefaultLanguageHighlighterColors.KEYWORD)
-        private val NUMBER = createTextAttributesKey("Mppl Number", DefaultLanguageHighlighterColors.NUMBER)
-        private val OPERATOR = createTextAttributesKey("Mppl Operator", DefaultLanguageHighlighterColors.OPERATION_SIGN)
-        private val BRACE = createTextAttributesKey("Mppl Brace", DefaultLanguageHighlighterColors.BRACES)
-        private val IDENTIFIER = createTextAttributesKey("Mppl Identifier", DefaultLanguageHighlighterColors.IDENTIFIER)
-        private val COMMA = createTextAttributesKey("Mppl Comma", DefaultLanguageHighlighterColors.COMMA)
-        private val DOT = createTextAttributesKey("Mppl Dot", DefaultLanguageHighlighterColors.DOT)
-        private val SEMICOLON = createTextAttributesKey("Mppl Semicolon", DefaultLanguageHighlighterColors.SEMICOLON)
-        private val COMMENT = createTextAttributesKey("Mppl Comment", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
-        private val BAD_CHARACTER = createTextAttributesKey("Mppl Bad Character", HighlighterColors.BAD_CHARACTER)
+        val KEYWORD = createTextAttributesKey("Mppl Keyword", DefaultLanguageHighlighterColors.KEYWORD)
+        val NUMBER = createTextAttributesKey("Mppl Number", DefaultLanguageHighlighterColors.NUMBER)
+        val OPERATOR = createTextAttributesKey("Mppl Operator", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val BRACE = createTextAttributesKey("Mppl Brace", DefaultLanguageHighlighterColors.BRACES)
+        val IDENTIFIER = createTextAttributesKey("Mppl Identifier", DefaultLanguageHighlighterColors.IDENTIFIER)
+        val COMMA = createTextAttributesKey("Mppl Comma", DefaultLanguageHighlighterColors.COMMA)
+        val DOT = createTextAttributesKey("Mppl Dot", DefaultLanguageHighlighterColors.DOT)
+        val SEMICOLON = createTextAttributesKey("Mppl Semicolon", DefaultLanguageHighlighterColors.SEMICOLON)
+        val COMMENT = createTextAttributesKey("Mppl Comment", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
+        val BAD_CHARACTER = createTextAttributesKey("Mppl Bad Character", HighlighterColors.BAD_CHARACTER)
 
         private val KEYWORD_KEYS = arrayOf(KEYWORD)
         private val NUMBER_KEYS = arrayOf(NUMBER)
@@ -103,7 +102,6 @@ class MpplSyntaxHighlighter : SyntaxHighlighterBase() {
             MpplTypes.DOT,
             -> DOT_KEYS
 
-            MpplTypes.COLON,
             MpplTypes.SEMI,
             -> SEMICOLON_KEYS
 
