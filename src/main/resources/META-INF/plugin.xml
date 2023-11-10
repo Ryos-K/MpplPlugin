@@ -13,5 +13,8 @@
                 fieldName="INSTANCE"
                 language="Mppl"
                 extensions="mpl"/>
+        <lang.parserDefinition
+                language="Mppl"
+                implementationClass="com.github.ryosk.mpplplugin.language.MpplParserDefinition"/>
     </extensions>
 </idea-plugin>

@@ -11,14 +11,14 @@ import static com.github.ryosk.mpplplugin.language.psi.MpplTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.ryosk.mpplplugin.language.psi.*;
 
-public class MpplPropertyImpl extends ASTWrapperPsiElement implements MpplProperty {
+public class MpplProcedureNameImpl extends ASTWrapperPsiElement implements MpplProcedureName {
 
-  public MpplPropertyImpl(@NotNull ASTNode node) {
+  public MpplProcedureNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull MpplVisitor visitor) {
-    visitor.visitProperty(this);
+    visitor.visitProcedureName(this);
   }
 
   @Override
