@@ -16,5 +16,8 @@
         <lang.parserDefinition
                 language="Mppl"
                 implementationClass="com.github.ryosk.mpplplugin.language.MpplParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+                language="Mppl"
+                implementationClass="com.github.ryosk.mpplplugin.language.MpplSyntaxHighlighterFactory"/>
     </extensions>
 </idea-plugin>

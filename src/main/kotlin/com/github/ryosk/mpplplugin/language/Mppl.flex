@@ -95,6 +95,7 @@ COMMENT = "{" [^}]* "}"
 ":"         { return MpplTypes.COLON; }
 ";"         { return MpplTypes.SEMI; }
 
+// Identifier must be below every token
+{NAME} { return MpplTypes.NAME; }
 
-
-{NAME}        { return MpplTypes.NAME; }
+[^]  { return TokenType.BAD_CHARACTER; }
