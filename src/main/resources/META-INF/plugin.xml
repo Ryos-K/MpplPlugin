@@ -20,5 +20,8 @@
                 language="Mppl"
                 implementationClass="com.github.ryosk.mpplplugin.language.MpplSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="com.github.ryosk.mpplplugin.language.MpplColorSettingsPage"/>
+        <annotator
+                language="Mppl"
+                implementationClass="com.github.ryosk.mpplplugin.language.MpplAnnotator"/>
     </extensions>
 </idea-plugin>
