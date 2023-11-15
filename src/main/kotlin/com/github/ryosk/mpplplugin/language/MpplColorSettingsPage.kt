@@ -10,10 +10,12 @@ import javax.swing.Icon
 class MpplColorSettingsPage: ColorSettingsPage {
     override fun getAttributeDescriptors(): Array<AttributesDescriptor> =
         arrayOf(
-            AttributesDescriptor("Keyword", MpplSyntaxHighlighter.KEYWORD),
+            AttributesDescriptor("Keywords", MpplSyntaxHighlighter.KEYWORD),
+            AttributesDescriptor("String", MpplSyntaxHighlighter.STRING),
             AttributesDescriptor("Number" , MpplSyntaxHighlighter.NUMBER),
             AttributesDescriptor("Operator" , MpplSyntaxHighlighter.OPERATOR),
-            AttributesDescriptor("Brace" , MpplSyntaxHighlighter.BRACE),
+            AttributesDescriptor("Parentheses" , MpplSyntaxHighlighter.PAREN),
+            AttributesDescriptor("Braces" , MpplSyntaxHighlighter.BRACE),
             AttributesDescriptor("Identifier" , MpplSyntaxHighlighter.IDENTIFIER),
             AttributesDescriptor("Comma" , MpplSyntaxHighlighter.COMMA),
             AttributesDescriptor("Dot" , MpplSyntaxHighlighter.DOT),

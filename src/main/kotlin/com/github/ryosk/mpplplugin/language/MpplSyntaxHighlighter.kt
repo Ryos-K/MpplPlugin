@@ -1,8 +1,9 @@
 package com.github.ryosk.mpplplugin.language
 
+import com.github.ryosk.mpplplugin.language.psi.MpplTokenSets
 import com.github.ryosk.mpplplugin.language.psi.MpplTypes
 import com.intellij.lexer.Lexer
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey
@@ -13,20 +14,24 @@ import com.intellij.psi.tree.IElementType
 class MpplSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
-        val KEYWORD = createTextAttributesKey("Mppl Keyword", DefaultLanguageHighlighterColors.KEYWORD)
-        val NUMBER = createTextAttributesKey("Mppl Number", DefaultLanguageHighlighterColors.NUMBER)
-        val OPERATOR = createTextAttributesKey("Mppl Operator", DefaultLanguageHighlighterColors.OPERATION_SIGN)
-        val BRACE = createTextAttributesKey("Mppl Brace", DefaultLanguageHighlighterColors.BRACES)
-        val IDENTIFIER = createTextAttributesKey("Mppl Identifier", DefaultLanguageHighlighterColors.IDENTIFIER)
-        val COMMA = createTextAttributesKey("Mppl Comma", DefaultLanguageHighlighterColors.COMMA)
-        val DOT = createTextAttributesKey("Mppl Dot", DefaultLanguageHighlighterColors.DOT)
-        val SEMICOLON = createTextAttributesKey("Mppl Semicolon", DefaultLanguageHighlighterColors.SEMICOLON)
-        val COMMENT = createTextAttributesKey("Mppl Comment", DefaultLanguageHighlighterColors.BLOCK_COMMENT)
+        val KEYWORD = createTextAttributesKey("Mppl Keyword", Default.KEYWORD)
+        val STRING = createTextAttributesKey("Mppl String", Default.STRING)
+        val NUMBER = createTextAttributesKey("Mppl Number", Default.NUMBER)
+        val OPERATOR = createTextAttributesKey("Mppl Operator", Default.OPERATION_SIGN)
+        val PAREN = createTextAttributesKey("Mppl Parentheses", Default.PARENTHESES)
+        val BRACE = createTextAttributesKey("Mppl Brace", Default.BRACES)
+        val IDENTIFIER = createTextAttributesKey("Mppl Identifier", Default.IDENTIFIER)
+        val COMMA = createTextAttributesKey("Mppl Comma", Default.COMMA)
+        val DOT = createTextAttributesKey("Mppl Dot", Default.DOT)
+        val SEMICOLON = createTextAttributesKey("Mppl Semicolon", Default.SEMICOLON)
+        val COMMENT = createTextAttributesKey("Mppl Comment", Default.BLOCK_COMMENT)
         val BAD_CHARACTER = createTextAttributesKey("Mppl Bad Character", HighlighterColors.BAD_CHARACTER)
 
         private val KEYWORD_KEYS = arrayOf(KEYWORD)
+        private val STRING_KEYS = arrayOf(STRING)
         private val NUMBER_KEYS = arrayOf(NUMBER)
         private val OPERATOR_KEYS = arrayOf(OPERATOR)
+        private val PAREN_KEYS = arrayOf(PAREN)
         private val BRACE_KEYS = arrayOf(BRACE)
         private val IDENTIFIER_KEYS = arrayOf(IDENTIFIER)
         private val COMMA_KEYS = arrayOf(COMMA)
@@ -43,54 +48,22 @@ class MpplSyntaxHighlighter : SyntaxHighlighterBase() {
 
     override fun getTokenHighlights(tokenType: IElementType?): Array<TextAttributesKey> =
         when (tokenType) {
-            MpplTypes.ARRAY,
-            MpplTypes.BEGIN,
-            MpplTypes.BOOLEAN,
-            MpplTypes.BREAK,
-            MpplTypes.CALL,
-            MpplTypes.CHAR,
-            MpplTypes.DO,
-            MpplTypes.ELSE,
-            MpplTypes.END,
-            MpplTypes.FALSE,
-            MpplTypes.IF,
-            MpplTypes.INTEGER,
-            MpplTypes.NOT,
-            MpplTypes.OF,
-            MpplTypes.PROCEDURE,
-            MpplTypes.PROGRAM,
-            MpplTypes.READ,
-            MpplTypes.READLN,
-            MpplTypes.RETURN,
-            MpplTypes.THEN,
-            MpplTypes.TRUE,
-            MpplTypes.VAR,
-            MpplTypes.WHILE,
-            MpplTypes.WRITE,
-            MpplTypes.WRITELN,
+            in MpplTokenSets.KEYWORD
             -> KEYWORD_KEYS
+
+            MpplTypes.STRING,
+            -> STRING_KEYS
 
             MpplTypes.NUMBER,
             -> NUMBER_KEYS
 
-            MpplTypes.AND,
-            MpplTypes.DIV,
-            MpplTypes.OR,
-            MpplTypes.PLUS,
-            MpplTypes.MINUS,
-            MpplTypes.STAR,
-            MpplTypes.EQUAL,
-            MpplTypes.NOTEQ,
-            MpplTypes.LE,
-            MpplTypes.LEEQ,
-            MpplTypes.GR,
-            MpplTypes.GREQ,
+            in MpplTokenSets.OPERATOR
             -> OPERATOR_KEYS
 
-            MpplTypes.LPAREN,
-            MpplTypes.RPAREN,
-            MpplTypes.LSQPAREN,
-            MpplTypes.RSQPAREN,
+            in MpplTokenSets.PAREN
+            -> PAREN_KEYS
+
+            in MpplTokenSets.BRACE
             -> BRACE_KEYS
 
             MpplTypes.NAME,
