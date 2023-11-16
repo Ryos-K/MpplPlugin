@@ -13,72 +13,96 @@
     tokenTypeClass="com.github.ryosk.mpplplugin.language.psi.MpplTokenType"
 }
 
-// program                     ::= "program" "NAME" ";" block "."
-mpplFile               ::= PROGRAM NAME SEMI block DOT
-// block                       ::= { variableDeclaration | subprogramDeclaration } compoundStatement
-block                  ::= (variableDeclaration | subprogramDeclaration)* compoundStatement
-// variable_declaration        ::= "var" variableNames ":" type ";" { variableNames ":" type ";" }
-variableDeclaration    ::= VAR (variableNames COLON type SEMI)+
-// variable_names              ::= variableName { "," variableName }
+mpplFile               ::= root?
+
+root                   ::= PROGRAM NAME SEMI block DOT
+
+block                  ::= declaration* compoundStatement?
+
+declaration            ::= variableDeclaration
+                         | subprogramDeclaration { recoverWhile=declarationRecover }
+
+declarationRecover     ::= !(VAR | PROCEDURE | BEGIN | DOT)
+
+variableDeclaration    ::= VAR (variableNames COLON type SEMI)+ { pin=1 }
+
 variableNames          ::= variableName (COMMA variableNames)*
-// variable_name               ::= "NAME"
+
 variableName           ::= NAME
-// type                        ::= 標準型 | 配列型
+
 type                   ::= standardType | arrayType
-// standard_type               ::= "integer" | "boolean" | "char"
+
 standardType           ::= INTEGER | BOOLEAN | CHAR
-// array_type                  ::= "array" "[" "符号なし整数" "]" "of" 標準型
+
 arrayType              ::= ARRAY LSQPAREN NUMBER RSQPAREN OF standardType
-// subprogram_declaration      ::= "procedure" 手続き名 [ 仮引数部 ] ";" [ variableDeclaration ] compoundStatement ";"
-subprogramDeclaration  ::= PROCEDURE procedureName formalParameters? SEMI variableDeclaration? compoundStatement SEMI
-// procedure_name              ::= "NAME"
+
+subprogramDeclaration  ::= PROCEDURE procedureName formalParameters? SEMI variableDeclaration? compoundStatement SEMI { pin=1 }
+
 procedureName          ::= NAME
-// formal_parameters           ::= "(" variableNames ":" type { ";" variableNames ":" type } ")"
+
 formalParameters       ::= LPAREN variableNames COLON type (SEMI variableNames COLON type)* RPAREN
-// compound_statement          ::= "begin" 文 { ";" 文 } "end"
-compoundStatement      ::= BEGIN statement (SEMI statement)* END
-// statement                   ::= 代入文 | 分岐文 | 繰り返し文 | 脱出文 | 手続き呼び出し文 | 戻り文 | 入力文 | 出力文 | compoundStatement | 空文
-statement              ::= assignmentStatement | conditionStatement | iterationStatement | exitStatement | callStatement | returnStatement | inputStatement | outputStatement | compoundStatement | emptyStatement
-// condition_statement         ::= "if" expression "then" 文 [ "else" 文 ]
+
+compoundStatement      ::= BEGIN statement (SEMI statement)* END { pin=1 }
+
+statement              ::= assignmentStatement
+                         | conditionStatement
+                         | iterationStatement
+                         | exitStatement
+                         | callStatement
+                         | returnStatement
+                         | inputStatement
+                         | outputStatement
+                         | compoundStatement
+                         | emptyStatement {
+                         recoverWhile=statementRecover
+                         }
+statementRecover       ::= !(SEMI | END | DOT)
+
 conditionStatement     ::= IF expression THEN statement (ELSE statement)?
-// iteration_statement         ::= "while" expression "do" 文
+
 iterationStatement     ::= WHILE expression DO statement
-// exit_statement              ::= "break"
+
 exitStatement          ::= BREAK
-// call_statement              ::= "call" 手続き名 [ "(" 式の並び ")" ]
+
 callStatement          ::= CALL procedureName (LPAREN expressions RPAREN)?
-// expressions                 ::= expression { "," expression }
+
 expressions            ::= expression (COMMA expression)*
-// return_statement            ::= "return"
+
 returnStatement        ::= RETURN
-// assignment_statement        ::= 左辺部 ":=" expression
+
 assignmentStatement    ::= leftPart ASSIGN expression
-// left_part                   ::= 変数
+
 leftPart               ::= variable
-// variable                    ::= variableName [ "[" expression "]" ]
+
 variable               ::= variableName (LSQPAREN expression RSQPAREN)?
-// expression                  ::= 単純式 { 関係演算子 単純式 }
+
 expression             ::= simpleExpression (relationalOperator simpleExpression)*
-// simple_expression           ::= [ "+" | "-" ] 項 { 加法演算子 項 }
+
 simpleExpression       ::= (PLUS | MINUS)? term (additiveOperator term)*
-// term                        ::= 因子 { 乗法演算子 因子 }
+
 term                   ::= factor (multiplicativeOperator factor)*
-// factor                      ::= 変数 | 定数 | "(" expression ")" | "not" 因子 | 標準型 "(" expression ")"
+
 factor                 ::= variable | constant | LPAREN expression RPAREN | NOT factor | standardType LPAREN expression RPAREN
-// constant                    ::= "符号なし整数" | "false" | "true" | "文字列"
+
 constant               ::= NUMBER | FALSE | TRUE | STRING
-// multiplicative_operator     ::= "*" | "div" | "and"
+
 multiplicativeOperator ::= STAR | DIV | AND
-// additive_operator           ::= "+" | "-" | "or"
+
 additiveOperator       ::= PLUS | MINUS | OR
-// relational_operator         ::= "=" | "<>" | "<" | "<=" | ">" | ">="
+
 relationalOperator     ::= EQUAL | NOTEQ | LE | LEEQ | GR | GREQ
-// input_statement             ::= ("read" | "readln") [ "(" 変数 { "," 変数 } ")" ]
+
 inputStatement         ::= (READ | READLN) (LPAREN variable (COMMA variable)* RPAREN)?
-// output_statement            ::= ("write" | "writeln") [ "(" 出力指定 { "," 出力指定 } ")" ]
+
 outputStatement        ::= (WRITE | WRITELN) (LPAREN outputFormat (COMMA outputFormat)* RPAREN)?
-// output_format               ::= expression [ ":" "符号なし整数" ] | "文字列"
+
 outputFormat           ::= expression (COLON NUMBER)? | STRING
-// empty_statement             ::= ε
+
 emptyStatement         ::= COMMENT?
+
+
+
+
+
+
 

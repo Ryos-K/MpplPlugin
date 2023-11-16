@@ -23,5 +23,8 @@
         <annotator
                 language="Mppl"
                 implementationClass="com.github.ryosk.mpplplugin.language.MpplAnnotator"/>
+        <completion.contributor
+            language="Mppl"
+            implementationClass="com.github.ryosk.mpplplugin.language.MpplKeywordCompletionContributor"/>
     </extensions>
 </idea-plugin>
