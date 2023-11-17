@@ -1,5 +1,6 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.highlighting
 
+import com.github.ryosk.mpplplugin.language.MpplIcons
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.options.colors.AttributesDescriptor

@@ -1,17 +1,11 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.completion
 
-import com.github.ryosk.mpplplugin.language.psi.MpplTokenSets
+import com.github.ryosk.mpplplugin.language.MpplLanguage
 import com.github.ryosk.mpplplugin.language.psi.MpplTypes
 import com.intellij.codeInsight.completion.*
-import com.intellij.codeInsight.lookup.Lookup
 import com.intellij.codeInsight.lookup.LookupElementBuilder
-import com.intellij.codeInsight.template.impl.TemplateSettings
-import com.intellij.formatting.Indent
 import com.intellij.openapi.editor.EditorModificationUtil
-import com.intellij.psi.PsiElement
-import com.intellij.patterns.PlatformPatterns
 import com.intellij.patterns.PlatformPatterns.*
-import com.intellij.util.ProcessingContext
 
 class MpplKeywordCompletionContributor : CompletionContributor() {
     private val insideMpplPattern = psiElement(MpplTypes.NAME).withLanguage(MpplLanguage.INSTANCE)

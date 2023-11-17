@@ -1,4 +1,4 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.annotator
 
 import com.github.ryosk.mpplplugin.language.psi.MpplTypes
 import com.intellij.lang.annotation.AnnotationHolder

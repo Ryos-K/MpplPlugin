@@ -1,4 +1,4 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.highlighting
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory

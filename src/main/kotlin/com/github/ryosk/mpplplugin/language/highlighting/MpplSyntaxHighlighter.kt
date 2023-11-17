@@ -1,5 +1,6 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.highlighting
 
+import com.github.ryosk.mpplplugin.language.MpplLexerAdapter
 import com.github.ryosk.mpplplugin.language.psi.MpplTokenSets
 import com.github.ryosk.mpplplugin.language.psi.MpplTypes
 import com.intellij.lexer.Lexer

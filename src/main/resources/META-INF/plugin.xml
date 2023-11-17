@@ -18,13 +18,13 @@
                 implementationClass="com.github.ryosk.mpplplugin.language.MpplParserDefinition"/>
         <lang.syntaxHighlighterFactory
                 language="Mppl"
-                implementationClass="com.github.ryosk.mpplplugin.language.MpplSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="com.github.ryosk.mpplplugin.language.MpplColorSettingsPage"/>
+                implementationClass="com.github.ryosk.mpplplugin.language.highlighting.MpplSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.github.ryosk.mpplplugin.language.highlighting.MpplColorSettingsPage"/>
         <annotator
                 language="Mppl"
-                implementationClass="com.github.ryosk.mpplplugin.language.MpplAnnotator"/>
+                implementationClass="com.github.ryosk.mpplplugin.language.annotator.MpplAnnotator"/>
         <completion.contributor
             language="Mppl"
-            implementationClass="com.github.ryosk.mpplplugin.language.MpplKeywordCompletionContributor"/>
+            implementationClass="com.github.ryosk.mpplplugin.language.completion.MpplKeywordCompletionContributor"/>
     </extensions>
 </idea-plugin>

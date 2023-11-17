@@ -1,4 +1,4 @@
-package com.github.ryosk.mpplplugin.language
+package com.github.ryosk.mpplplugin.language.completion
 
 import com.intellij.codeInsight.completion.CompletionParameters
 import com.intellij.codeInsight.completion.CompletionProvider
@@ -7,7 +7,6 @@ import com.intellij.codeInsight.completion.InsertHandler
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.util.ProcessingContext
-import com.intellij.util.containers.toArray
 
 class MpplKeywordCompletionProvider(
     private vararg val keywordLookUpElements: LookupElementBuilder,
