@@ -40,94 +40,48 @@ class MpplKeywordCompletionContributor : CompletionContributor() {
         )
         extend(
             CompletionType.BASIC, insideMpplPattern, MpplKeywordCompletionProvider(
-                programLookUpElement(),
-                varLookUpElement(),
-                procedureLookUpElement(),
-                beginEndLookUpElement(),
-                ifThenLookUpElement(),
-                ifThenElseLookUpElement(),
-                whileLookUpElement(),
-                arrayLookUpElement(),
-                embeddedFunctionLookUpElement("read"),
-                embeddedFunctionLookUpElement("readln"),
-                embeddedFunctionLookUpElement("write"),
-                embeddedFunctionLookUpElement("writeln"),
+                embeddedFunctionLookupElement("read"),
+                embeddedFunctionLookupElement("readln"),
+                embeddedFunctionLookupElement("write"),
+                embeddedFunctionLookupElement("writeln"),
+                callStatementLookupElement(),
+                breakStatementLookupElement(),
+                returnStatementLookupElement()
             )
         )
 
     }
 
-    private fun programLookUpElement() = LookupElementBuilder
-        .create("program")
-        .withTailText(" ...")
-        .withInsertHandler { context, item ->
-            context.document.insertString(context.selectionEndOffset, " ;\nbegin\n end")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun varLookUpElement() = LookupElementBuilder
-        .create("var")
-        .withTailText(" ...")
-        .withInsertHandler { context, item ->
-            context.document.insertString(context.selectionEndOffset, " : ;")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-
-    private fun procedureLookUpElement() = LookupElementBuilder
-        .create("procedure")
-        .withTailText(" ...")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, " ;")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun beginEndLookUpElement() = LookupElementBuilder
-        .create("begin")
-        .withTailText(" ...")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, "  end")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun ifThenLookUpElement() = LookupElementBuilder
-        .create("if")
-        .withTailText(" ... then")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, "  then")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun ifThenElseLookUpElement() = LookupElementBuilder
-        .create("if")
-        .withTailText(" ... then ... else")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, "  then  else")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun whileLookUpElement() = LookupElementBuilder
-        .create("while")
-        .withTailText(" ... do")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, "  do")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun arrayLookUpElement() = LookupElementBuilder
-        .create("array")
-        .withTailText(" ...")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, " [] of ")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
-        }
-
-    private fun embeddedFunctionLookUpElement(func: String) = LookupElementBuilder
+    private fun embeddedFunctionLookupElement(func: String) = LookupElementBuilder
         .create(func)
         .withTailText(" ...")
-        .withInsertHandler { context, _ ->
-            context.document.insertString(context.selectionEndOffset, "();")
-            EditorModificationUtil.moveCaretRelatively(context.editor, 1)
+        .withInsertHandler { ctx, _ ->
+            ctx.document.insertString(ctx.selectionEndOffset, "();")
+            EditorModificationUtil.moveCaretRelatively(ctx.editor, 1)
+        }
+
+    private fun callStatementLookupElement() = LookupElementBuilder
+        .create("call")
+        .withTailText(" ...;")
+        .withInsertHandler { ctx, _ ->
+            ctx.document.insertString(ctx.selectionEndOffset, " ;")
+            EditorModificationUtil.moveCaretRelatively(ctx.editor, 1)
+        }
+
+    private fun breakStatementLookupElement() = LookupElementBuilder
+        .create("break")
+        .withTailText(";")
+        .withInsertHandler { ctx, _ ->
+            ctx.document.insertString(ctx.selectionEndOffset, ";")
+            EditorModificationUtil.moveCaretRelatively(ctx.editor, 1)
+        }
+
+    private fun returnStatementLookupElement() = LookupElementBuilder
+        .create("return")
+        .withTailText(";")
+        .withInsertHandler { ctx, _ ->
+            ctx.document.insertString(ctx.selectionEndOffset, ";")
+            EditorModificationUtil.moveCaretRelatively(ctx.editor, 1)
         }
 
 }

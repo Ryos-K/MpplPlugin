@@ -1,0 +1,75 @@
+<templateSet group="Mppl">
+    <template
+            desctiption="Program" name="program"
+            value="program $PROGRAM$;&#10;&#9;$DECLARATION$&#10;begin&#10;&#9;$STATEMENT$&#10;end.$END$">
+        <variable name="PROGRAM" alwaysStopAt="true"/>
+        <variable name="DECLARATION" alwaysStopAt="true"/>
+        <variable name="STATEMENT" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="Procedure" name="procedure"
+            value="procedure $PROCEDURE$;&#10;begin&#10;&#9;$STATEMENT$&#10;end;$END$">
+        <variable name="PROCEDURE" alwaysStopAt="true"/>
+        <variable name="STATEMENT" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="VAR" name="var"
+            value="var&#10;&#9;$VARIABLE$: $TYPE$;&#10;$END$">
+        <variable name="VARIABLE" alwaysStopAt="true"/>
+        <variable name="TYPE" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="If Then Else" name="if then else"
+            value="if $CONDITION$ then &#10;&#9;$THEN$&#10;else&#10;&#9;$ELSE$&#10;&#9;$END$">
+        <variable name="CONDITION" alwaysStopAt="true"/>
+        <variable name="THEN" alwaysStopAt="true"/>
+        <variable name="ELSE" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="If Then" name="if then"
+            value="if $CONDITION$ then &#10;&#9;$THEN$&#10;$END$">
+        <variable name="CONDITION" alwaysStopAt="true"/>
+        <variable name="THEN" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="While Do" name="while do"
+            value="while $CONDITION$ do&#10;&#9;$STATEMENT$">
+        <variable name="CONDITION" alwaysStopAt="true"/>
+        <variable name="STATEMENT" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="Begin End" name="begin end"
+            value="begin&#10;&#9;$STATEMENT$&#10;end">
+        <variable name="STATEMENT" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+    <template
+            desctiption="Array" name="array[] of"
+            value="array[$SIZE$] of $TYPE$">
+        <variable name="SIZE" alwaysStopAt="true"/>
+        <variable name="TYPE" alwaysStopAt="true"/>
+        <context>
+            <option name="MPPL" value="true"/>
+        </context>
+    </template>
+</templateSet>

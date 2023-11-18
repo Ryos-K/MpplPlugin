@@ -32,5 +32,8 @@
         <lang.refactoringSupport
             language="Mppl"
             implementationClass="com.github.ryosk.mpplplugin.language.MpplRefactoringSupportProvider"/>
+
+        <defaultLiveTemplates file="/liveTemplate/mppl.xml"/>
+        <liveTemplateContext contextId="MPPL" implementation="com.github.ryosk.mpplplugin.language.MpplLiveTemplateContextType"/>
     </extensions>
 </idea-plugin>
