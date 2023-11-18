@@ -26,5 +26,11 @@
         <completion.contributor
             language="Mppl"
             implementationClass="com.github.ryosk.mpplplugin.language.completion.MpplKeywordCompletionContributor"/>
+        <psi.referenceContributor
+            language="Mppl"
+            implementation="com.github.ryosk.mpplplugin.language.MpplReferenceContributor"/>
+        <lang.refactoringSupport
+            language="Mppl"
+            implementationClass="com.github.ryosk.mpplplugin.language.MpplRefactoringSupportProvider"/>
     </extensions>
 </idea-plugin>

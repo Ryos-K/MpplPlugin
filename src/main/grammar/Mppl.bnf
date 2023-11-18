@@ -11,6 +11,8 @@
     elementTypeHolderClass="com.github.ryosk.mpplplugin.language.psi.MpplTypes"
     elementTypeClass="com.github.ryosk.mpplplugin.language.psi.MpplElementType"
     tokenTypeClass="com.github.ryosk.mpplplugin.language.psi.MpplTokenType"
+
+    psiImplUtilClass="com.github.ryosk.mpplplugin.language.psi.impl.MpplPsiImplUtil"
 }
 
 mpplFile               ::= root?
@@ -28,7 +30,11 @@ variableDeclaration    ::= VAR (variableNames COLON type SEMI)+ { pin=1 }
 
 variableNames          ::= variableName (COMMA variableNames)*
 
-variableName           ::= NAME
+variableName           ::= NAME {
+    mixin="com.github.ryosk.mpplplugin.language.psi.impl.MpplNamedElementImpl"
+    implements="com.github.ryosk.mpplplugin.language.psi.MpplNamedElement"
+    methods=[getName setName getNameIdentifier]
+}
 
 type                   ::= standardType | arrayType
 
@@ -38,7 +44,11 @@ arrayType              ::= ARRAY LSQPAREN NUMBER RSQPAREN OF standardType
 
 subprogramDeclaration  ::= PROCEDURE procedureName formalParameters? SEMI variableDeclaration? compoundStatement SEMI { pin=1 }
 
-procedureName          ::= NAME
+procedureName          ::= NAME {
+    mixin="com.github.ryosk.mpplplugin.language.psi.impl.MpplNamedElementImpl"
+    implements="com.github.ryosk.mpplplugin.language.psi.MpplNamedElement"
+    methods=[getName setName getNameIdentifier]
+}
 
 formalParameters       ::= LPAREN variableNames COLON type (SEMI variableNames COLON type)* RPAREN
 
